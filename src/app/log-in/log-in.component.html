@@ -1,0 +1,35 @@
+<form [formGroup]="myForm">
+  <h3>LOG IN</h3>
+  <mat-form-field>
+    <mat-label>User Name</mat-label>
+    <input matInput formControlName="name" />
+    <mat-error *ngIf="name.errors?.required"
+      >This field is mandatory.</mat-error
+    >
+    <mat-error *ngIf="name.errors?.pattern">invalid</mat-error>
+  </mat-form-field>
+  <br />
+  <mat-form-field>
+    <mat-label>Password</mat-label>
+    <input matInput formControlName="password" />
+    <mat-error *ngIf="password.errors?.required"
+      >This field is mandatory.</mat-error
+    >
+    <mat-error *ngIf="password.errors?.maxlength"
+      >maximum length is 12</mat-error
+    >
+    <mat-error *ngIf="password.errors?.minlength"
+      >minimum length is 8</mat-error
+    >
+  </mat-form-field>
+  <br />
+
+  <button
+    mat-raised-button
+    [disabled]="myForm.invalid"
+    color="primary"
+    (click)="displayData()"
+  >
+    Log in
+  </button>
+</form>

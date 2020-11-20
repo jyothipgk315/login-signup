@@ -1,0 +1,122 @@
+<div class="container">
+  <h3>SIGN UP FORM</h3>
+  <form [formGroup]="myForm">
+    <div class="example-container">
+      <mat-form-field class="textfeild-width">
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name" />
+        <mat-error *ngIf="name.errors?.required"
+          >This field is mandatory.</mat-error
+        >
+        <mat-error *ngIf="name.errors?.pattern">invalid</mat-error>
+      </mat-form-field>
+      <br />
+      <mat-form-field class="textfeild-width">
+        <mat-label>Enter your email</mat-label>
+        <input matInput placeholder="pat@example.com" [formControl]="email" />
+        <mat-error *ngIf="email.errors?.required"
+          >This field is mandatory.</mat-error
+        >
+        <mat-error *ngIf="email.errors?.email">invalid mail id.</mat-error>
+      </mat-form-field>
+      <br />
+      <mat-form-field class="textfeild-width">
+        <mat-label>Address</mat-label>
+        <input matInput formControlName="address" />
+        <mat-error *ngIf="address.touched">This field is mandatory.</mat-error>
+      </mat-form-field>
+      <br />
+      <mat-form-field class="textfeild-width">
+        <mat-label>Phone Number </mat-label>
+        <input matInput type="number" [formControl]="phone" />
+        <mat-error *ngIf="phone.errors?.required"
+          >This field is mandatory.</mat-error
+        >
+        <mat-error *ngIf="phone.errors?.pattern">invalid</mat-error>
+      </mat-form-field>
+      <br />
+      <div class="dob">
+        <mat-label class="dob-label">DOB </mat-label>
+        <mat-form-field class="dob_width_month">
+          <input matInput placeholder="DD" type="number" [formControl]="date" />
+        </mat-form-field>
+
+        <mat-form-field class="dob_width_month">
+          <mat-select placeholder="MM" [formControl]="month">
+            <mat-option *ngFor="let month of months" [value]="month.value">
+              {{ month.viewValue }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="dob_width_month">
+          <input
+            matInput
+            placeholder="YYYY"
+            type="number"
+            [formControl]="year"
+          />
+        </mat-form-field>
+      </div>
+      <br />
+      <div class="example-section">
+        <label class="example-margin-label">Gender</label>
+        <mat-radio-group [formControl]="gender" required>
+          <mat-radio-button class="example-margin" value="m" color="primary"
+            >Male</mat-radio-button
+          >
+          <mat-radio-button class="example-margin" value="f" color="primary"
+            >Female</mat-radio-button
+          >
+        </mat-radio-group>
+      </div>
+
+      <br />
+      <mat-checkbox [formControl]="eligiable" color="primary" class="eligiable">
+        <mat-label class="eligiable-label">eligiable</mat-label>
+      </mat-checkbox>
+
+      <br />
+      <mat-form-field class="textfeild-width">
+        <mat-label>Password</mat-label>
+        <input matInput formControlName="password1" />
+        <mat-error *ngIf="password1.errors?.required"
+          >this field is madidatory</mat-error
+        >
+        <mat-error *ngIf="password1.errors?.minlength"
+          >mininum 8 chara</mat-error
+        >
+        <mat-error *ngIf="password1.errors?.maxlength"
+          >maximum 12 chara</mat-error
+        >
+      </mat-form-field>
+      <br />
+      <mat-form-field class="textfeild-width">
+        <mat-label>rePassword</mat-label>
+        <input matInput formControlName="password2" />
+        <mat-error *ngIf="password2.errors?.required"
+          >this field is madidatory</mat-error
+        >
+        <mat-error *ngIf="password2.errors?.minlength"
+          >mininum 8 chara</mat-error
+        >
+        <mat-error *ngIf="password2.errors?.maxlength"
+          >maximum 12 chara</mat-error
+        >
+        <mat-error *ngIf="myForm.controls.password2.errors?.passwordValidity"
+          >mismach</mat-error
+        >
+      </mat-form-field>
+      <br />
+
+      <button
+        mat-raised-button
+        [disabled]="myForm.invalid"
+        color="primary"
+        (click)="displayData()"
+      >
+        submit
+      </button>
+    </div>
+  </form>
+</div>
